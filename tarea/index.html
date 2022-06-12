@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf'8">
+        <title>Carga de Datos</title>
+    </head>
+    <body>
+        <section> 
+            <form action="factura.php" method="POST">           
+                        
+            <table border="box" rules="none">
+            <caption><h1>Trabajo Practico - Clase 10:</h1></caption>
+            <tbody>
+
+                <!-- FECHA -->
+                <tr>
+                    <div class="form-row">
+                        <th align="left"><label for="fecha">Fecha:</label></th>
+                        <th align="left"><input name="fecha" type="date" required></th>
+                    </div>        
+                </tr>
+
+                <!-- NOMBRE -->
+                <tr>
+                    <div class="form-row">
+                        <th align="left"><label for="nombre">Nombre:</label></th>
+                        <td align="left"><input name="nombre" type="text" size="20" required></td>
+                    </div>              
+                </tr>
+
+
+                <!-- IMPUESTOS -->
+                <tr>
+                    <div class="form-row">
+                          <th align="left">Provincia:</th>
+                        <td>
+                            <select name="impuesto" required>            
+                                <option type="number" value="10">Impuesto 1 - 10%</option>            
+                                <option type="number" value="20">Impuesto 2 - 20%</option>                        
+                        </td>
+                    </div>                    
+                </tr>
+
+                
+                <!-- DETALLE -->    
+
+                <tr>
+                    <div class="form-row">
+                        <th align="left">Detalle:</th>
+                    </div>                  
+                </tr>          
+                
+                <!-- CODIGO / DESCRIPCION / CANTIDAD / PRECIO -->
+        
+                <tr>
+                    <div class="form-row">
+                        <th align="left">Codigo</th>
+                        <td align="left">Descripcion</td>
+                        <td align="left"><label for="cantidad">Cantidad</label></td>
+                        <td align="left"><label for="precio">Precio </label></td>
+                    </div>
+                </tr>
+
+
+                <!-- CAMPOS A RELLENAR -->
+
+                <tr>
+                    <div class="form-row">
+                        <th><input type="number" min="500" size="20" required name="codigo"></th>
+                        <td><input type="text" size="20" required name="descripcion"></td>
+                        <td><input type="number" min="0" size="20" required name="cantidad"></td>
+                        <td><input type="number" min="0" required name="precio"></td>
+                    </div>                    
+                </tr>
+
+                
+                <!-- CAMPOS A RELLENAR -->
+
+                <tr>
+                    <div class="form-row">
+                        <th><input type="number" min="500" size="20" name="codigo2" required></th>
+                        <td><input type="text" size="20" name="descripcion2" required></td>
+                        <td><input type="number" min="1" size="20" name="cantidad2" required></td>
+                        <td><input type="number" min="0" name="precio2" required></td>
+                    </div>
+                </tr>
+
+
+                <!-- BOTONES DE ENVIAR Y RESTABLECER -->
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Pie de tabla.</td>
+                    </tr>
+                </tfoot>             
+                
+                <tr>
+                    <div class="form-row">
+                        <th><input type="submit" value="Enviar"></th>
+                         <td><input type="reset" value="Restablecer todo"></td>
+                    </div>                    
+                </tr>
+                             
+            </tbody>
+            </form>
+        </section>
+    </body>
+</html>
