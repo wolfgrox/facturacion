@@ -1,34 +1,28 @@
 <?php
         //VARIABLES
 $fecha = $_POST['fecha'];
-$nombre = $_POST['nombre'];
 $impuesto = $_POST['impuesto'];
+
+$nombre = $_POST['nombre'];
 $codigo = $_POST['codigo'];
-$codigo2 = $_POST['codigo2'];
 $descripcion = $_POST['descripcion'];
-$descripcion2 = $_POST['descripcion2'];
 $cantidad = $_POST['cantidad'];
-$cantidad2 = $_POST['cantidad2'];
 $precio = $_POST['precio'];
-$precio2 = $_POST['precio2'];
 
 //total del primer producto, se multiplica cantidad por valor
-$total = $cantidad*$precio;
+$total = 0;
+
 
 //total del segundo producto, se multiplica cantidad2 por valor2
-$total2 = $cantidad2*$precio2;
+//$total2 = $cantidad2*$precio2;
 
 //total del NETO, suma de totales
-$neto = $total + $total2;
+$neto = 0; //+ $total2;
 
 //total del impuesto, suma de totales
-$porcentaje = $neto*$impuesto / 100;
+$porcentaje = 0;
 
 ?>
-
-
-
-
 
 
 <html lang="es">
@@ -94,28 +88,29 @@ $porcentaje = $neto*$impuesto / 100;
 
                 <!-- CAMPOS A RELLENAR -->
 
-                <tr>
-                    <div>
-                        <th align="center"><?php echo $codigo; ?></th>
-                        <td align="center"><?php echo $descripcion; ?></td>
-                        <td align="center"><?php echo $cantidad; ?></td>
-                        <td align="center"><?php echo $precio; ?></td>
-                        <td align="center"><?php echo $total; ?></td>
-                    </div>                    
-                </tr>
+                <?php
+                $veces = count($codigo);
+                $neto_new = 0;
 
-                
-                <!-- CAMPOS A RELLENAR -->
+                $porcentajeImpuesto = 0;
 
-                <tr>
-                    <div>
-                        <th align="center"><?php echo $codigo2; ?></th>
-                        <td align="center"><?php echo $descripcion2; ?></td>
-                        <td align="center"><?php echo $cantidad2; ?></td>
-                        <td align="center"><?php echo $precio2; ?></td>
-                        <td align="center"><?php echo $total2; ?></td>
-                    </div>
-                </tr>
+                for ($i = 0; $i < $veces; $i++) {
+                    echo '<tr><div>';
+                    echo '<th align="center">';
+                                echo $codigo[$i];
+                    echo '</th><td align="center">';
+                                echo $descripcion[$i];
+                    echo '</th><td align="center">';
+                                echo $cantidad[$i];
+                    echo '</th><td align="center">';
+                                echo $precio[$i];
+                    echo '</th><td align="center">';
+                                echo $cantidad[$i] * $precio[$i];                            
+                    echo '</td></div></tr>';
+
+                    $neto_new = $neto_new + ( $cantidad[$i] * $precio[$i]);
+                    }
+                ?>
                                 <!-- CAMPO NETO -->
 
                 <tr>
@@ -123,8 +118,8 @@ $porcentaje = $neto*$impuesto / 100;
                         <th></th>
                         <td></td>
                         <td></td>
-                        <td align="center">Neto</td>
-                        <td align="center"><?php echo $neto; ?></td>
+                        <td align="center">Neto New</td>
+                        <td align="center"><?php echo $neto_new; ?></td>
                     </div>
                 </tr>
                                 <!-- CAMPO IMPUESTO -->
@@ -135,7 +130,12 @@ $porcentaje = $neto*$impuesto / 100;
                         <td></td>
                         <td></td>
                         <td align="center">Impuestos</td>
-                        <td align="center"><?php echo $porcentaje; ?></td>
+                        <td align="center">
+                            <?php 
+                                $porcentajeImpuesto = $neto_new * $impuesto / 100;
+                                echo $porcentajeImpuesto; 
+                            ?>
+                        </td>
                     </div>
                 </tr>
                                 <!-- CAMPO TOTAL -->
@@ -146,7 +146,7 @@ $porcentaje = $neto*$impuesto / 100;
                         <td></td>
                         <td></td>
                         <td align="center">Total</td>
-                        <td align="center"><?php echo $neto + $porcentaje; ?></td>
+                        <td align="center"><?php echo $neto_new + $porcentajeImpuesto; ?></td>
                     </div>
                 </tr>
 
